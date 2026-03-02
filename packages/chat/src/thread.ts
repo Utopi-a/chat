@@ -3,7 +3,7 @@ import type { Root } from "mdast";
 import { cardToFallbackText } from "./cards";
 import { ChannelImpl, deriveChannelId } from "./channel";
 import { getChatSingleton } from "./chat-singleton";
-import { type CardJSXElement, isJSX, toCardElement } from "./jsx-runtime";
+import { type ChatElement, isJSX, toCardElement } from "./jsx-runtime";
 import {
   paragraph,
   parseMarkdown,
@@ -327,7 +327,7 @@ export class ThreadImpl<TState = Record<string, unknown>>
   }
 
   async post(
-    message: string | PostableMessage | CardJSXElement
+    message: string | PostableMessage | ChatElement
   ): Promise<SentMessage> {
     // Handle AsyncIterable (streaming)
     if (isAsyncIterable(message)) {
@@ -360,7 +360,7 @@ export class ThreadImpl<TState = Record<string, unknown>>
 
   async postEphemeral(
     user: string | Author,
-    message: AdapterPostableMessage | CardJSXElement,
+    message: AdapterPostableMessage | ChatElement,
     options: PostEphemeralOptions
   ): Promise<EphemeralMessage | null> {
     const { fallbackToDM } = options;
@@ -672,7 +672,7 @@ export class ThreadImpl<TState = Record<string, unknown>>
       },
 
       async edit(
-        newContent: string | PostableMessage | CardJSXElement
+        newContent: string | PostableMessage | ChatElement
       ): Promise<SentMessage> {
         // Auto-convert JSX elements to CardElement
         // edit doesn't support streaming, so use AdapterPostableMessage
@@ -728,7 +728,7 @@ export class ThreadImpl<TState = Record<string, unknown>>
       },
 
       async edit(
-        newContent: string | PostableMessage | CardJSXElement
+        newContent: string | PostableMessage | ChatElement
       ): Promise<SentMessage> {
         let postable: string | AdapterPostableMessage = newContent as
           | string
