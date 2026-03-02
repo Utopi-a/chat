@@ -89,7 +89,7 @@ The `event` object includes:
 
 ### Assistant thread handler
 
-`onAssistantThreadStarted` fires when a user opens a new assistant thread in Slack. Use it with the Slack Assistants API to set suggested prompts and status indicators. See [Slack Assistants API](/docs/adapters/slack#slack-assistants-api) for details.
+`onAssistantThreadStarted` fires when a user opens a new assistant thread in Slack. Use it with the Slack Assistants API to set suggested prompts and status indicators. See [Slack Assistants API](/adapters/slack#slack-assistants-api) for details.
 
 ```typescript title="lib/bot.ts" lineNumbers
 bot.onAssistantThreadStarted(async (event) => {
